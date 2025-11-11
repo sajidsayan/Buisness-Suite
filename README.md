@@ -1,565 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Business Suite Pro</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mega Business Suite Pro</title>
+  <style>
+    /* --- RESET & BASE --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    html, body { height: 100%; scroll-behavior: smooth; }
+    body {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #333;
+      overflow-x: hidden;
+    }
+    ::selection { background: #3498db; color: #fff; }
 
-        body {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: #333;
-            line-height: 1.6;
-        }
+    /* --- PARALLAX BACKGROUND --- */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 20% 20%, rgba(52,152,219,0.3), transparent 60%),
+                  radial-gradient(circle at 80% 80%, rgba(41,128,185,0.2), transparent 60%);
+      z-index: -1;
+      animation: moveBg 10s infinite alternate ease-in-out;
+    }
+    @keyframes moveBg {
+      0% { background-position: 20% 20%, 80% 80%; }
+      100% { background-position: 30% 30%, 70% 70%; }
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    /* --- HEADER --- */
+    header {
+      text-align: center;
+      padding: 80px 20px 60px;
+      color: #fff;
+      position: relative;
+    }
+    header h1 {
+      font-size: 3.8em;
+      background: linear-gradient(90deg, #fff, #8ec5fc, #e0c3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 4s linear infinite;
+    }
+    @keyframes shine {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    header h2 {
+      font-size: 1.4em;
+      font-weight: 300;
+      color: #ecf0f1;
+      margin-top: 10px;
+    }
 
-        .header {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
+    /* --- BADGES --- */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 25px;
+    }
+    .badge {
+      padding: 8px 14px;
+      border-radius: 20px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .python { background: #3776ab; }
+    .ui { background: #27ae60; }
+    .database { background: #e74c3c; }
+    .license { background: #9b59b6; }
+    .platform { background: #34495e; }
 
-        .header h1 {
-            font-size: 3.5em;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #2c3e50, #3498db);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    /* --- NAVIGATION --- */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 15px 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      z-index: 99;
+      transition: background 0.3s;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1);
+      transition: 0.3s;
+    }
+    nav a:hover {
+      background: #3498db;
+      transform: translateY(-2px);
+    }
 
-        .header h2 {
-            font-size: 1.5em;
-            color: #7f8c8d;
-            font-weight: 300;
-        }
+    /* --- SECTION STYLE --- */
+    section {
+      max-width: 1100px;
+      margin: 60px auto;
+      background: rgba(255,255,255,0.95);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      animation: fadeIn 0.8s ease both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        .badges {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
+    section h2 {
+      font-size: 2em;
+      color: #2c3e50;
+      border-left: 6px solid #3498db;
+      padding-left: 15px;
+      margin-bottom: 20px;
+    }
 
-        .badge {
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 600;
-            color: white;
-        }
+    /* --- GRID FEATURES --- */
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 25px;
+      border-left: 4px solid #3498db;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card .icon { font-size: 2em; margin-bottom: 10px; }
+    .card h4 { color: #2c3e50; margin-bottom: 8px; }
 
-        .badge.python { background: #3776ab; }
-        .badge.ui { background: #27ae60; }
-        .badge.database { background: #e74c3c; }
-        .badge.license { background: #9b59b6; }
-        .badge.platform { background: #34495e; }
+    /* --- TABLE --- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    th {
+      background: #3498db;
+      color: white;
+      text-align: left;
+      padding: 14px;
+    }
+    td {
+      padding: 14px;
+      border-bottom: 1px solid #ecf0f1;
+    }
+    tr:hover { background: #f9fbfd; }
 
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
+    .status { background: #27ae60; color: white; padding: 4px 10px; border-radius: 12px; font-size: 0.8em; }
 
-        .nav-link {
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
+    /* --- CODE BLOCKS --- */
+    pre {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 16px;
+      border-radius: 10px;
+      font-family: monospace;
+      overflow-x: auto;
+      margin: 10px 0 25px;
+    }
 
-        .nav-link:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
+    /* --- FOOTER --- */
+    footer {
+      text-align: center;
+      color: #ecf0f1;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+    footer p { opacity: 0.9; }
 
-        .section {
-            background: rgba(255, 255, 255, 0.95);
-            margin: 30px 0;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .section h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 2.2em;
-            border-left: 5px solid #3498db;
-            padding-left: 15px;
-        }
-
-        .section h3 {
-            color: #34495e;
-            margin: 25px 0 15px 0;
-            font-size: 1.5em;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #3498db;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h4 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 1.3em;
-        }
-
-        .modules-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .modules-table th {
-            background: #3498db;
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        .modules-table td {
-            padding: 15px;
-            border-bottom: 1px solid #ecf0f1;
-        }
-
-        .modules-table tr:hover {
-            background: #f8f9fa;
-        }
-
-        .status-complete {
-            background: #27ae60;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-            font-weight: 600;
-        }
-
-        .code-block {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
-        }
-
-        .install-steps {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-left: 4px solid #3498db;
-        }
-
-        .step {
-            margin: 15px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .step:before {
-            content: "▶";
-            position: absolute;
-            left: 0;
-            color: #3498db;
-            font-weight: bold;
-        }
-
-        .file-structure {
-            background: #34495e;
-            color: #ecf0f1;
-            padding: 20px;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            margin: 20px 0;
-        }
-
-        .file-item {
-            margin: 5px 0;
-            padding-left: 20px;
-        }
-
-        .folder:before {
-            content: "📁 ";
-        }
-
-        .file:before {
-            content: "📄 ";
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: white;
-            margin-top: 50px;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5em;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav-link {
-                width: 200px;
-                text-align: center;
-            }
-        }
-    </style>
+    @media(max-width:768px){
+      header h1 { font-size: 2.6em; }
+      nav { flex-wrap: wrap; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🏢 Mega Business Suite Pro</h1>
-            <h2>Complete All-in-One Business Management Software</h2>
-            
-            <div class="badges">
-                <div class="badge python">Python 3.8+</div>
-                <div class="badge ui">CustomTkinter UI</div>
-                <div class="badge database">SQLite Database</div>
-                <div class="badge license">MIT License</div>
-                <div class="badge platform">Multi-Platform</div>
-            </div>
 
-            <div class="nav-links">
-                <a href="#features" class="nav-link">🚀 Features</a>
-                <a href="#installation" class="nav-link">📦 Installation</a>
-                <a href="#modules" class="nav-link">📊 Modules</a>
-                <a href="#usage" class="nav-link">🎯 Usage</a>
-                <a href="#technical" class="nav-link">🔧 Technical</a>
-            </div>
-        </div>
-
-        <!-- Features Section -->
-        <div id="features" class="section">
-            <h2>🌟 Key Features</h2>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h4>Real-time Dashboard</h4>
-                    <p>Live business overview with KPIs, activity feed, and quick stats monitoring</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h4>CRM System</h4>
-                    <p>Complete customer management with contact tracking and communication history</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h4>Accounting</h4>
-                    <p>Financial tracking, income/expense management, and comprehensive reporting</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📦</div>
-                    <h4>Inventory Management</h4>
-                    <p>Stock tracking, low stock alerts, and supplier management system</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">👨‍💼</div>
-                    <h4>HR Management</h4>
-                    <p>Employee records, payroll, attendance, and performance tracking</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">📋</div>
-                    <h4>Project Management</h4>
-                    <p>Kanban board, task tracking, team collaboration, and progress monitoring</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Installation Section -->
-        <div id="installation" class="section">
-            <h2>📦 Installation Guide</h2>
-            
-            <h3>System Requirements</h3>
-            <ul>
-                <li><strong>Python:</strong> 3.8 or higher</li>
-                <li><strong>RAM:</strong> 4GB minimum, 8GB recommended</li>
-                <li><strong>Storage:</strong> 500MB free space</li>
-                <li><strong>OS:</strong> Windows 10+, macOS 10.14+, Ubuntu 18.04+</li>
-            </ul>
-
-            <h3>Quick Installation</h3>
-            <div class="install-steps">
-                <div class="step">Clone the repository</div>
-                <div class="code-block">
-git clone https://github.com/yourusername/mega-business-suite.git<br>
-cd mega-business-suite
-                </div>
-
-                <div class="step">Run automatic installer</div>
-                <div class="code-block">python install.py</div>
-
-                <div class="step">Launch the application</div>
-                <div class="code-block">python main.py</div>
-            </div>
-
-            <h3>Manual Installation</h3>
-            <div class="code-block">
-# Install dependencies<br>
-pip install -r requirements.txt<br><br>
-
-# Create necessary directories<br>
-mkdir -p data exports backups assets/icons<br><br>
-
-# Initialize database<br>
-python -c "from data.database import BusinessDatabase; BusinessDatabase()"
-            </div>
-        </div>
-
-        <!-- Modules Section -->
-        <div id="modules" class="section">
-            <h2>📊 Business Modules</h2>
-            
-            <table class="modules-table">
-                <thead>
-                    <tr>
-                        <th>Module</th>
-                        <th>Icon</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Dashboard</strong></td>
-                        <td>📊</td>
-                        <td>Real-time business overview with KPIs and analytics</td>
-                        <td><span class="status-complete">Complete</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>CRM</strong></td>
-                        <td>👥</td>
-                        <td>Customer relationship management and contact tracking</td>
-                        <td><span class="status-complete">Complete</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Accounting</strong></td>
-                        <td>💰</td>
-                        <td>Financial management with income/expense tracking</td>
-                        <td><span class="status-complete">Complete</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Inventory</strong></td>
-                        <td>📦</td>
-                        <td>Stock management with alerts and supplier tracking</td>
-                        <td><span class="status-complete">Complete</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>HR Management</strong></td>
-                        <td>👨‍💼</td>
-                        <td>Employee records, payroll, and performance management</td>
-                        <td><span class="status-complete">Complete</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Projects</strong></td>
-                        <td>📋</td>
-                        <td>Project tracking with Kanban board and task management</td>
-                        <td><span class="status-complete">Complete</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Analytics</strong></td>
-                        <td>📈</td>
-                        <td>Business intelligence with charts and reporting</td>
-                        <td><span class="status-complete">Complete</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Usage Section -->
-        <div id="usage" class="section">
-            <h2>🎯 Quick Start Guide</h2>
-            
-            <h3>First Time Setup</h3>
-            <div class="install-steps">
-                <div class="step">Launch the application</div>
-                <div class="code-block">python main.py</div>
-                
-                <div class="step">Explore the Dashboard for business overview</div>
-                <div class="step">Generate sample data using "Generate Sample" buttons</div>
-                <div class="step">Navigate between modules using the sidebar</div>
-                <div class="step">Start adding your actual business data</div>
-            </div>
-
-            <h3>Basic Workflow</h3>
-            <ol>
-                <li>Add customers in CRM module</li>
-                <li>Create products in Inventory module</li>
-                <li>Record transactions in Accounting module</li>
-                <li>Manage projects in Projects module</li>
-                <li>View reports in Analytics module</li>
-            </ol>
-        </div>
-
-        <!-- Technical Section -->
-        <div id="technical" class="section">
-            <h2>🔧 Technical Details</h2>
-            
-            <h3>Architecture</h3>
-            <div class="code-block">
-Application Layer (CustomTkinter UI)<br>
-    ↓<br>
-Business Logic Layer (Python Modules)<br>
-    ↓<br>
-Data Access Layer (SQLite Database)<br>
-    ↓<br>
-Storage Layer (Local Filesystem)
-            </div>
-
-            <h3>File Structure</h3>
-            <div class="file-structure">
-                <div class="file-item folder">mega-business-suite/</div>
-                <div class="file-item file">main.py</div>
-                <div class="file-item file">install.py</div>
-                <div class="file-item file">requirements.txt</div>
-                <div class="file-item folder">modules/</div>
-                <div class="file-item file" style="margin-left: 20px;">crm.py</div>
-                <div class="file-item file" style="margin-left: 20px;">accounting.py</div>
-                <div class="file-item file" style="margin-left: 20px;">inventory.py</div>
-                <div class="file-item file" style="margin-left: 20px;">hr.py</div>
-                <div class="file-item file" style="margin-left: 20px;">projects.py</div>
-                <div class="file-item file" style="margin-left: 20px;">analytics.py</div>
-                <div class="file-item folder">ui/</div>
-                <div class="file-item file" style="margin-left: 20px;">components.py</div>
-                <div class="file-item file" style="margin-left: 20px;">themes.py</div>
-                <div class="file-item folder">data/</div>
-                <div class="file-item file" style="margin-left: 20px;">database.py</div>
-                <div class="file-item folder">assets/</div>
-                <div class="file-item folder">exports/</div>
-                <div class="file-item folder">backups/</div>
-            </div>
-
-            <h3>Database Schema</h3>
-            <div class="code-block">
--- Core Business Tables<br>
-CREATE TABLE customers (<br>
-&nbsp;&nbsp;&nbsp;&nbsp;id INTEGER PRIMARY KEY,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;name TEXT NOT NULL,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;email TEXT UNIQUE,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;phone TEXT,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;company TEXT,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;status TEXT DEFAULT 'Active'<br>
-);<br><br>
-
-CREATE TABLE transactions (<br>
-&nbsp;&nbsp;&nbsp;&nbsp;id INTEGER PRIMARY KEY,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;type TEXT NOT NULL,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;amount REAL NOT NULL,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;description TEXT,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;category TEXT,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;date TIMESTAMP DEFAULT CURRENT_TIMESTAMP<br>
-);
-            </div>
-        </div>
-
-        <div class="footer">
-            <h3>Mega Business Suite Pro</h3>
-            <p>Complete Business Management Solution</p>
-            <p>© 2024 All Rights Reserved | MIT License</p>
-        </div>
+  <header>
+    <h1>🏢 Mega Business Suite Pro</h1>
+    <h2>All-in-One Modern Business Management Platform</h2>
+    <div class="badges">
+      <div class="badge python">Python 3.8+</div>
+      <div class="badge ui">CustomTkinter UI</div>
+      <div class="badge database">SQLite Database</div>
+      <div class="badge license">MIT License</div>
+      <div class="badge platform">Cross-Platform</div>
     </div>
+  </header>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
+  <nav>
+    <a href="#features">🚀 Features</a>
+    <a href="#install">📦 Installation</a>
+    <a href="#modules">📊 Modules</a>
+    <a href="#usage">🎯 Usage</a>
+    <a href="#tech">🔧 Technical</a>
+  </nav>
 
-        // Add animation to feature cards on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  <section id="features">
+    <h2>🌟 Key Features</h2>
+    <div class="grid">
+      <div class="card"><div class="icon">📊</div><h4>Dashboard</h4><p>Real-time KPIs, analytics, and activity tracking.</p></div>
+      <div class="card"><div class="icon">👥</div><h4>CRM</h4><p>Customer relationship management and lead pipelines.</p></div>
+      <div class="card"><div class="icon">💰</div><h4>Accounting</h4><p>Income, expenses, invoices, and tax reports.</p></div>
+      <div class="card"><div class="icon">📦</div><h4>Inventory</h4><p>Stock control, supplier management, low-stock alerts.</p></div>
+      <div class="card"><div class="icon">👨‍💼</div><h4>HR</h4><p>Employee data, attendance, payroll, performance.</p></div>
+      <div class="card"><div class="icon">📋</div><h4>Projects</h4><p>Kanban workflow, tasks, team collaboration.</p></div>
+    </div>
+  </section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+  <section id="install">
+    <h2>📦 Installation</h2>
+    <p><b>Requirements:</b> Python 3.8+, 4GB RAM, 500MB disk, Windows/macOS/Linux</p>
+    <pre>
+git clone https://github.com/yourusername/mega-business-suite.git
+cd mega-business-suite
+python install.py
+    </pre>
+    <p>Or manual setup:</p>
+    <pre>
+pip install -r requirements.txt
+mkdir -p data exports backups assets/icons
+python -c "from data.database import BusinessDatabase; BusinessDatabase()"
+python main.py
+    </pre>
+  </section>
 
-        // Observe feature cards
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
+  <section id="modules">
+    <h2>📊 Modules</h2>
+    <table>
+      <tr><th>Module</th><th>Icon</th><th>Description</th><th>Status</th></tr>
+      <tr><td>Dashboard</td><td>📊</td><td>KPIs & insights</td><td><span class="status">✅ Done</span></td></tr>
+      <tr><td>CRM</td><td>👥</td><td>Customer tracking</td><td><span class="status">✅ Done</span></td></tr>
+      <tr><td>Accounting</td><td>💰</td><td>Financial tracking</td><td><span class="status">✅ Done</span></td></tr>
+      <tr><td>Inventory</td><td>📦</td><td>Stock & suppliers</td><td><span class="status">✅ Done</span></td></tr>
+      <tr><td>HR</td><td>👨‍💼</td><td>Employee management</td><td><span class="status">✅ Done</span></td></tr>
+      <tr><td>Projects</td><td>📋</td><td>Kanban & tasks</td><td><span class="status">✅ Done</span></td></tr>
+      <tr><td>Analytics</td><td>📈</td><td>Reports & charts</td><td><span class="status">✅ Done</span></td></tr>
+    </table>
+  </section>
+
+  <section id="usage">
+    <h2>🎯 Quick Start</h2>
+    <pre>
+python main.py
+    </pre>
+    <ul>
+      <li>Explore the dashboard overview</li>
+      <li>Generate sample data</li>
+      <li>Add customers, products, and transactions</li>
+      <li>Manage projects and track analytics</li>
+    </ul>
+  </section>
+
+  <section id="tech">
+    <h2>🔧 Technical Overview</h2>
+    <pre>
+Application Layer (CustomTkinter)
+↓
+Business Logic Layer (Python)
+↓
+Data Layer (SQLite)
+↓
+Storage Layer (Filesystem)
+    </pre>
+    <pre>
+mega-business-suite/
+├── main.py
+├── install.py
+├── modules/
+│   ├── crm.py
+│   ├── accounting.py
+│   ├── inventory.py
+│   ├── hr.py
+│   ├── projects.py
+│   └── analytics.py
+└── data/
+    └── database.py
+    </pre>
+  </section>
+
+  <footer>
+    <p><b>Mega Business Suite Pro</b> — Complete Business Management Software</p>
+    <p>© 2025 All Rights Reserved • MIT License</p>
+  </footer>
+
 </body>
 </html>
