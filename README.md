@@ -1,497 +1,565 @@
-#🏢 Mega Business Suite Pro
-<div align="center">
-https://img.shields.io/badge/Python-3.8%252B-blue?logo=python
-https://img.shields.io/badge/UI-CustomTkinter-green?logo=window-terminal
-https://img.shields.io/badge/Database-SQLite-orange?logo=sqlite
-https://img.shields.io/badge/License-MIT-purple
-https://img.shields.io/badge/Platform-Windows%2520%257C%2520Linux%2520%257C%2520macOS-lightgrey
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Business Suite Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-All-in-One Business Management Software
-Modern • Modular • Enterprise-Ready
+        body {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+        }
 
-Features • Installation • Modules • Usage • Development
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-</div>
-📋 Table of Contents
-Overview
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
 
-Features
+        .header h1 {
+            font-size: 3.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-Installation
+        .header h2 {
+            font-size: 1.5em;
+            color: #7f8c8d;
+            font-weight: 300;
+        }
 
-Quick Start
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
 
-Modules
+        .badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: white;
+        }
 
-Screenshots
+        .badge.python { background: #3776ab; }
+        .badge.ui { background: #27ae60; }
+        .badge.database { background: #e74c3c; }
+        .badge.license { background: #9b59b6; }
+        .badge.platform { background: #34495e; }
 
-Technical Details
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
 
-API Documentation
+        .nav-link {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
 
-Troubleshooting
+        .nav-link:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
 
-Contributing
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 30px 0;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
 
-License
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            border-left: 5px solid #3498db;
+            padding-left: 15px;
+        }
 
-🌟 Overview
-Mega Business Suite Pro is a comprehensive business management solution that integrates all essential business functions into a single, cohesive application. Built with modern Python and featuring a beautiful dark-themed interface, it provides enterprise-level capabilities for businesses of all sizes.
+        .section h3 {
+            color: #34495e;
+            margin: 25px 0 15px 0;
+            font-size: 1.5em;
+        }
 
-🎯 Key Benefits
-Unified Platform: Manage all business operations in one place
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
 
-Real-time Data: Live updates and instant reporting
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
 
-Data Security: Local database with encryption and backups
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
 
-Scalable Architecture: Grows with your business needs
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
 
-No Subscription Fees: One-time setup, lifetime usage
+        .feature-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
 
-🚀 Features
-Core Modules
-Module	Icon	Description	Status
-Dashboard	📊	Real-time business overview with KPIs	✅
-CRM	👥	Customer relationship management	✅
-Accounting	💰	Financial tracking and reporting	✅
-Inventory	📦	Stock management with alerts	✅
-HR Management	👨‍💼	Employee records and payroll	✅
-Projects	📋	Task management with Kanban	✅
-Analytics	📈	Business intelligence and charts	✅
-Advanced Capabilities
-Multi-theme Support: Dark, Light, Blue, Purple themes
+        .modules-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
 
-Data Export: CSV, Excel, PDF reports
+        .modules-table th {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
 
-Backup System: Automated database backups
+        .modules-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
 
-Sample Data: Demo data generation for testing
+        .modules-table tr:hover {
+            background: #f8f9fa;
+        }
 
-Search & Filter: Advanced data retrieval
+        .status-complete {
+            background: #27ae60;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
 
-Responsive UI: Adapts to different screen sizes
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
 
-Real-time Notifications: Alert system for important events
+        .install-steps {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
 
-📦 Installation
-System Requirements
-Python: 3.8 or higher
+        .step {
+            margin: 15px 0;
+            padding-left: 20px;
+            position: relative;
+        }
 
-RAM: 4GB minimum, 8GB recommended
+        .step:before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
 
-Storage: 500MB free space
+        .file-structure {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+        }
 
-OS: Windows 10+, macOS 10.14+, Ubuntu 18.04+
+        .file-item {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
 
-Step-by-Step Installation
-Download the Software
+        .folder:before {
+            content: "📁 ";
+        }
 
-bash
-git clone https://github.com/yourusername/mega-business-suite.git
+        .file:before {
+            content: "📄 ";
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-link {
+                width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏢 Mega Business Suite Pro</h1>
+            <h2>Complete All-in-One Business Management Software</h2>
+            
+            <div class="badges">
+                <div class="badge python">Python 3.8+</div>
+                <div class="badge ui">CustomTkinter UI</div>
+                <div class="badge database">SQLite Database</div>
+                <div class="badge license">MIT License</div>
+                <div class="badge platform">Multi-Platform</div>
+            </div>
+
+            <div class="nav-links">
+                <a href="#features" class="nav-link">🚀 Features</a>
+                <a href="#installation" class="nav-link">📦 Installation</a>
+                <a href="#modules" class="nav-link">📊 Modules</a>
+                <a href="#usage" class="nav-link">🎯 Usage</a>
+                <a href="#technical" class="nav-link">🔧 Technical</a>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div id="features" class="section">
+            <h2>🌟 Key Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h4>Real-time Dashboard</h4>
+                    <p>Live business overview with KPIs, activity feed, and quick stats monitoring</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h4>CRM System</h4>
+                    <p>Complete customer management with contact tracking and communication history</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h4>Accounting</h4>
+                    <p>Financial tracking, income/expense management, and comprehensive reporting</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h4>Inventory Management</h4>
+                    <p>Stock tracking, low stock alerts, and supplier management system</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍💼</div>
+                    <h4>HR Management</h4>
+                    <p>Employee records, payroll, attendance, and performance tracking</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h4>Project Management</h4>
+                    <p>Kanban board, task tracking, team collaboration, and progress monitoring</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Installation Section -->
+        <div id="installation" class="section">
+            <h2>📦 Installation Guide</h2>
+            
+            <h3>System Requirements</h3>
+            <ul>
+                <li><strong>Python:</strong> 3.8 or higher</li>
+                <li><strong>RAM:</strong> 4GB minimum, 8GB recommended</li>
+                <li><strong>Storage:</strong> 500MB free space</li>
+                <li><strong>OS:</strong> Windows 10+, macOS 10.14+, Ubuntu 18.04+</li>
+            </ul>
+
+            <h3>Quick Installation</h3>
+            <div class="install-steps">
+                <div class="step">Clone the repository</div>
+                <div class="code-block">
+git clone https://github.com/yourusername/mega-business-suite.git<br>
 cd mega-business-suite
-Run Automatic Installer (Recommended)
+                </div>
 
-bash
-python install.py
-This will:
+                <div class="step">Run automatic installer</div>
+                <div class="code-block">python install.py</div>
 
-Install all dependencies
+                <div class="step">Launch the application</div>
+                <div class="code-block">python main.py</div>
+            </div>
 
-Create necessary directories
+            <h3>Manual Installation</h3>
+            <div class="code-block">
+# Install dependencies<br>
+pip install -r requirements.txt<br><br>
 
-Set up the database
+# Create necessary directories<br>
+mkdir -p data exports backups assets/icons<br><br>
 
-Verify installation
-
-Manual Installation (Alternative)
-
-bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Create directories
-mkdir -p data exports backups assets/icons
-
-# Initialize database
+# Initialize database<br>
 python -c "from data.database import BusinessDatabase; BusinessDatabase()"
-Launch Application
+            </div>
+        </div>
 
-bash
-python main.py
-Platform-Specific Notes
-Windows:
+        <!-- Modules Section -->
+        <div id="modules" class="section">
+            <h2>📊 Business Modules</h2>
+            
+            <table class="modules-table">
+                <thead>
+                    <tr>
+                        <th>Module</th>
+                        <th>Icon</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Dashboard</strong></td>
+                        <td>📊</td>
+                        <td>Real-time business overview with KPIs and analytics</td>
+                        <td><span class="status-complete">Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>CRM</strong></td>
+                        <td>👥</td>
+                        <td>Customer relationship management and contact tracking</td>
+                        <td><span class="status-complete">Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Accounting</strong></td>
+                        <td>💰</td>
+                        <td>Financial management with income/expense tracking</td>
+                        <td><span class="status-complete">Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inventory</strong></td>
+                        <td>📦</td>
+                        <td>Stock management with alerts and supplier tracking</td>
+                        <td><span class="status-complete">Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>HR Management</strong></td>
+                        <td>👨‍💼</td>
+                        <td>Employee records, payroll, and performance management</td>
+                        <td><span class="status-complete">Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Projects</strong></td>
+                        <td>📋</td>
+                        <td>Project tracking with Kanban board and task management</td>
+                        <td><span class="status-complete">Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Analytics</strong></td>
+                        <td>📈</td>
+                        <td>Business intelligence with charts and reporting</td>
+                        <td><span class="status-complete">Complete</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-Use Command Prompt or PowerShell
+        <!-- Usage Section -->
+        <div id="usage" class="section">
+            <h2>🎯 Quick Start Guide</h2>
+            
+            <h3>First Time Setup</h3>
+            <div class="install-steps">
+                <div class="step">Launch the application</div>
+                <div class="code-block">python main.py</div>
+                
+                <div class="step">Explore the Dashboard for business overview</div>
+                <div class="step">Generate sample data using "Generate Sample" buttons</div>
+                <div class="step">Navigate between modules using the sidebar</div>
+                <div class="step">Start adding your actual business data</div>
+            </div>
 
-Ensure Python is added to PATH
+            <h3>Basic Workflow</h3>
+            <ol>
+                <li>Add customers in CRM module</li>
+                <li>Create products in Inventory module</li>
+                <li>Record transactions in Accounting module</li>
+                <li>Manage projects in Projects module</li>
+                <li>View reports in Analytics module</li>
+            </ol>
+        </div>
 
-Run as Administrator if needed
-
-macOS:
-
-Use Terminal
-
-May need to install Python-tk: brew install python-tk
-
-Linux:
-
-Ubuntu/Debian: sudo apt install python3-tk
-
-Fedora: sudo dnf install tkinter
-
-🎯 Quick Start
-First Launch
-Start the application: python main.py
-
-Explore the Dashboard: View business overview
-
-Generate Sample Data: Use "Generate Sample" buttons in each module
-
-Navigate Modules: Use sidebar to switch between features
-
-Basic Workflow
-Add Customers (CRM module)
-
-Create Products (Inventory module)
-
-Record Transactions (Accounting module)
-
-Manage Projects (Projects module)
-
-View Reports (Analytics module)
-
-Keyboard Shortcuts
-Ctrl+N: New record (context sensitive)
-
-Ctrl+S: Save current form
-
-Ctrl+F: Open search
-
-Ctrl+Q: Quit application
-
-📊 Modules Detailed
-1. Dashboard Module 📊
-Real-time Business Intelligence
-
-python
-Features:
-• Revenue tracking
-• Customer growth metrics  
-• Inventory alerts
-• Employee activity feed
-• Quick-action buttons
-• Customizable widgets
-2. CRM Module 👥
-Customer Relationship Management
-
-python
-Key Functions:
-• Customer database management
-• Contact history tracking
-• Lead pipeline management
-• Communication logs
-• Customer support tickets
-• Email integration (planned)
-
-Database Schema:
-CREATE TABLE customers (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    email TEXT UNIQUE,
-    phone TEXT,
-    company TEXT,
-    status TEXT DEFAULT 'Active',
-    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-3. Accounting Module 💰
-Financial Management
-
-python
-Capabilities:
-• Income/expense tracking
-• Double-entry bookkeeping
-• Tax calculation
-• Financial reports
-• Invoice management
-• Budget planning
-
-Reports Available:
-• Profit & Loss Statement
-• Balance Sheet
-• Cash Flow Statement
-• Tax Summary Report
-• Expense Analysis
-4. Inventory Module 📦
-Stock Management
-
-python
-Features:
-• Product catalog management
-• Stock level tracking
-• Low stock alerts
-• Supplier management
-• Purchase orders
-• Inventory valuation
-
-Alert System:
-• Low stock warnings
-• Expiry date notifications
-• Reorder suggestions
-• Stock movement history
-5. HR Module 👨‍💼
-Human Resources
-
-python
-Functions:
-• Employee database
-• Attendance tracking
-• Payroll management
-• Department structure
-• Performance reviews
-• Leave management
-
-Employee Management:
-• Personal details
-• Job information
-• Salary structure
-• Documents storage
-• Reporting hierarchy
-6. Projects Module 📋
-Project Management
-
-python
-Features:
-• Kanban board interface
-• Task management
-• Team collaboration
-• Progress tracking
-• Time tracking
-• Resource allocation
-
-Project Views:
-• Backlog
-• In Progress
-• Review
-• Completed
-• Archived
-7. Analytics Module 📈
-Business Intelligence
-
-python
-Reporting Capabilities:
-• Sales charts and graphs
-• Financial analytics
-• Customer behavior analysis
-• Inventory trends
-• Employee performance
-• Custom report builder
-
-Chart Types:
-• Line charts
-• Bar graphs
-• Pie charts
-• Scatter plots
-• Heat maps (planned)
-🖼 Screenshots
-Main Dashboard
-text
-┌────────────────────────────────────────────────────────┐
-│ 🏢 Mega Business Suite Pro                            │
-├────────────────────────────────────────────────────────┤
-│ 📊 Dashboard  👥 CRM  💰 Accounting  📦 Inventory    │
-├────────────────────────────────────────────────────────┤
-│                                                        │
-│  📈 Business Overview                                 │
-│  ┌─────────────┬─────────────┬─────────────┬─────────┐ │
-│  │ Total Rev   │ Customers   │ Orders      │ Stock   │ │
-│  │ $125,430    │ 1,243       │ 47          │ 856     │ │
-│  │ ↑ 12%       │ ↑ 8%        │ ↓ 3%        │ Stable  │ │
-│  └─────────────┴─────────────┴─────────────┴─────────┘ │
-│                                                        │
-│  📋 Recent Activity                                   │
-│  • New customer 'TechCorp' registered                 │
-│  • Invoice #INV-0012 paid                            │
-│  • Low stock alert for Product XYZ                   │
-└────────────────────────────────────────────────────────┘
-CRM Interface
-text
-┌────────────────────────────────────────────────────────┐
-│ 👥 Customer Management                                │
-├────────────────────────────────────────────────────────┤
-│ Search: [_______________] [🔍]  [+ Add Customer]      │
-├────────────────────────────────────────────────────────┤
-│ ID  Name        Email           Company       Status   │
-│ 1   John Smith  john@abc.com    ABC Corp      Active   │
-│ 2   Sarah Jones sarah@xyz.com   XYZ Inc       Active   │
-│ 3   Mike Brown  mike@tech.com   Tech Solutions Prospect│
-└────────────────────────────────────────────────────────┘
-🔧 Technical Details
-Architecture
-text
-Application Layer (CustomTkinter UI)
-    ↓
-Business Logic Layer (Python Modules)
-    ↓
-Data Access Layer (SQLite Database)
-    ↓
+        <!-- Technical Section -->
+        <div id="technical" class="section">
+            <h2>🔧 Technical Details</h2>
+            
+            <h3>Architecture</h3>
+            <div class="code-block">
+Application Layer (CustomTkinter UI)<br>
+    ↓<br>
+Business Logic Layer (Python Modules)<br>
+    ↓<br>
+Data Access Layer (SQLite Database)<br>
+    ↓<br>
 Storage Layer (Local Filesystem)
-Database Schema
-sql
--- Core Tables
-customers (id, name, email, phone, company, status, created_date)
-transactions (id, type, amount, description, category, date)
-products (id, name, sku, price, quantity, category)
-employees (id, name, email, position, department, salary)
-projects (id, name, description, status, priority, progress)
-File Structure
-text
-mega-business-suite/
-├── main.py                 # Application entry point
-├── install.py              # Installation script
-├── requirements.txt        # Dependencies
-├── modules/               # Business logic
-│   ├── crm.py
-│   ├── accounting.py
-│   ├── inventory.py
-│   ├── hr.py
-│   ├── projects.py
-│   └── analytics.py
-├── ui/                   # Interface components
-│   ├── components.py
-│   └── themes.py
-├── data/                # Data management
-│   └── database.py
-├── assets/             # Resources
-├── exports/           # Generated files
-└── backups/          # Database backups
-📚 API Documentation
-Database Class
-python
-class BusinessDatabase:
-    def get_customers(status=None) -> List[Tuple]
-    def get_financial_summary() -> Dict
-    def get_low_stock_products() -> List[Tuple]
-    def export_to_csv(table_name) -> str
-    def backup_database() -> str
-UI Components
-python
-# Stats Card
-card = StatsCard(parent, "Revenue", "$125,430", "↑ 12%")
-card.update_value("$130,000", "↑ 15%")
+            </div>
 
-# Data Table
-table = DataTable(parent, ["ID", "Name", "Email"])
-table.load_data(customer_data)
+            <h3>File Structure</h3>
+            <div class="file-structure">
+                <div class="file-item folder">mega-business-suite/</div>
+                <div class="file-item file">main.py</div>
+                <div class="file-item file">install.py</div>
+                <div class="file-item file">requirements.txt</div>
+                <div class="file-item folder">modules/</div>
+                <div class="file-item file" style="margin-left: 20px;">crm.py</div>
+                <div class="file-item file" style="margin-left: 20px;">accounting.py</div>
+                <div class="file-item file" style="margin-left: 20px;">inventory.py</div>
+                <div class="file-item file" style="margin-left: 20px;">hr.py</div>
+                <div class="file-item file" style="margin-left: 20px;">projects.py</div>
+                <div class="file-item file" style="margin-left: 20px;">analytics.py</div>
+                <div class="file-item folder">ui/</div>
+                <div class="file-item file" style="margin-left: 20px;">components.py</div>
+                <div class="file-item file" style="margin-left: 20px;">themes.py</div>
+                <div class="file-item folder">data/</div>
+                <div class="file-item file" style="margin-left: 20px;">database.py</div>
+                <div class="file-item folder">assets/</div>
+                <div class="file-item folder">exports/</div>
+                <div class="file-item folder">backups/</div>
+            </div>
 
-# Search Bar
-search = SearchBar(parent, "Search customers...", on_search_callback)
-🛠 Troubleshooting
-Common Issues
-1. Installation Fails
+            <h3>Database Schema</h3>
+            <div class="code-block">
+-- Core Business Tables<br>
+CREATE TABLE customers (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id INTEGER PRIMARY KEY,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name TEXT NOT NULL,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;email TEXT UNIQUE,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;phone TEXT,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;company TEXT,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;status TEXT DEFAULT 'Active'<br>
+);<br><br>
 
-bash
-# Clear pip cache and retry
-pip cache purge
-python install.py
-2. Module Import Errors
+CREATE TABLE transactions (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id INTEGER PRIMARY KEY,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;type TEXT NOT NULL,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;amount REAL NOT NULL,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;description TEXT,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;category TEXT,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;date TIMESTAMP DEFAULT CURRENT_TIMESTAMP<br>
+);
+            </div>
+        </div>
 
-bash
-# Check Python path
-python -c "import sys; print(sys.path)"
-# Reinstall dependencies
-pip install --force-reinstall -r requirements.txt
-3. Database Errors
+        <div class="footer">
+            <h3>Mega Business Suite Pro</h3>
+            <p>Complete Business Management Solution</p>
+            <p>© 2024 All Rights Reserved | MIT License</p>
+        </div>
+    </div>
 
-bash
-# Reset database (WARNING: loses data)
-rm data/business_suite.db
-python main.py  # New database will be created
-4. UI Rendering Issues
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
 
-bash
-# Try different theme
-# Edit in Settings → Appearance
-Performance Tips
-Close other memory-intensive applications
+        // Add animation to feature cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-Regular database maintenance using built-in tools
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-Use search filters for large datasets
-
-Export old data to archive files
-
-🤝 Contributing
-We welcome contributions! Here's how you can help:
-
-Development Setup
-Fork the repository
-
-Create a feature branch: git checkout -b feature/amazing-feature
-
-Make your changes and test thoroughly
-
-Commit your changes: git commit -m 'Add amazing feature'
-
-Push to the branch: git push origin feature/amazing-feature
-
-Open a Pull Request
-
-Coding Standards
-Follow PEP 8 style guide
-
-Use type hints for function parameters
-
-Add docstrings to all functions
-
-Include unit tests for new features
-
-Update documentation accordingly
-
-Feature Requests
-Please use GitHub Issues to:
-
-Report bugs
-
-Request new features
-
-Suggest improvements
-
-Ask questions
-
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-Third-Party Licenses
-CustomTkinter: MIT License
-
-Pandas: BSD 3-Clause
-
-Matplotlib: Matplotlib License
-
-Faker: MIT License
-
-📞 Support
-Documentation
-User Guide - Complete usage instructions
-
-Developer Guide - API documentation
-
-FAQ - Frequently asked questions
-
-Community
-GitHub Discussions: Feature discussions and Q&A
-
-Issue Tracker: Bug reports and feature requests
-
-Wiki: Additional documentation and tutorials
-
-Commercial Support
-For enterprise deployments and customizations, contact our professional services team.
-
-<div align="center">
-Mega Business Suite Pro - Empowering Businesses with Smart Software
-
-⬆ Back to Top
-
-</div>
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
